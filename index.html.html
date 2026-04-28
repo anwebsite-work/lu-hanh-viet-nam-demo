@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lu Hanh Viet Nam | Tailor-Made Vietnam Journeys</title>
+  <meta name="description" content="Private tailor-made Vietnam tours crafted by local experts for international travelers." />
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f0ea;
+      --paper: #fffdf8;
+      --ink: #10100f;
+      --muted: #6f6a61;
+      --soft: #f7f4ee;
+      --line: #e8e0d5;
+      --accent: #e86439;
+      --accent-dark: #c84b25;
+      --green: #153d2f;
+      --radius-xl: 34px;
+      --radius-lg: 28px;
+      --radius-md: 22px;
+      --shadow: 0 28px 90px rgba(31, 25, 17, .12);
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: -0.006em;
+      line-height: 1.55;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input { font: inherit; }
+
+    .site {
+      width: min(1320px, calc(100% - 24px));
+      margin: 24px auto;
+      background: var(--paper);
+      border-radius: var(--radius-xl);
+      overflow: clip;
+      box-shadow: var(--shadow);
+    }
+
+    .wrap {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-size: 14px;
+      font-weight: 850;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease), background .24s var(--ease), border-color .24s var(--ease);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.13); }
+    .btn.dark { background: #101010; color: #fff; }
+    .btn.light { background: rgba(255,255,255,.88); color: #111; border-color: rgba(232,224,213,.75); }
+    .btn.accent { background: var(--accent); color: #fff; }
+    .btn.accent:hover { background: var(--accent-dark); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255,253,248,.87);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(232,224,213,.72);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #464139;
+    }
+
+    .links a { position: relative; padding: 8px 0; }
+    .links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s var(--ease);
+    }
+    .links a:hover::after { transform: scaleX(1); }
+
+    .actions { display: flex; align-items: center; gap: 10px; }
+
+    .hero { padding: 30px 0 78px; }
+
+    .hero-card {
+      position: relative;
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      align-items: end;
+      gap: 34px;
+      padding: 36px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #101010;
+      isolation: isolate;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.76) 0%, rgba(0,0,0,.42) 42%, rgba(0,0,0,.16) 100%),
+        url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1900&q=86') center/cover;
+      transform: scale(1.04);
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 44%;
+      z-index: -1;
+      background: linear-gradient(to top, rgba(0,0,0,.66), transparent);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      color: #fff;
+      max-width: 675px;
+      padding: 26px 0 28px 2px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      max-width: 100%;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(14px);
+      color: rgba(255,255,255,.94);
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { word-spacing: -0.03em; }
+    p { text-wrap: pretty; }
+
+    .hero h1 {
+      margin-bottom: 24px;
+      font-size: clamp(54px, 8vw, 106px);
+      line-height: 1.04;
+      letter-spacing: -0.052em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      max-width: 570px;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.72;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .quote {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,.58);
+      border-radius: 30px;
+      background: rgba(255,253,248,.96);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.22);
+    }
+
+    .quote h3 {
+      margin-bottom: 18px;
+      font-size: 25px;
+      line-height: 1.22;
+      letter-spacing: -0.035em;
+      font-weight: 900;
+    }
+
+    .field {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.68);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .quote .btn { width: 100%; margin-top: 16px; min-height: 54px; }
+
+    section { padding: 78px 0; }
+
+    .split-title {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+      align-items: end;
+      gap: 54px;
+      margin-bottom: 36px;
+    }
+
+    .label {
+      margin-bottom: 13px;
+      color: var(--accent);
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .h2 {
+      margin-bottom: 0;
+      font-size: clamp(38px, 5vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.78;
+      letter-spacing: -0.006em;
+      font-weight: 500;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .trust {
+      min-height: 178px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: #fff;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+
+    .trust:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(22,18,12,.08); }
+    .trust strong {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 39px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    .trust span { color: var(--muted); font-size: 14px; line-height: 1.55; font-weight: 550; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tour-card {
+      position: relative;
+      min-height: 442px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #ddd;
+      color: #fff;
+      isolation: isolate;
+    }
+
+    .tour-card img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s var(--ease);
+    }
+    .tour-card:hover img { transform: scale(1.06); }
+    .tour-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(to top, rgba(0,0,0,.80) 0%, rgba(0,0,0,.40) 45%, rgba(0,0,0,.05) 100%);
+    }
+
+    .tour-body {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 26px;
+    }
+
+    .pill {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.92);
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .tour-body h3 {
+      margin-bottom: 10px;
+      font-size: 26px;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    .tour-body p {
+      margin-bottom: 20px;
+      color: rgba(255,255,255,.84);
+      font-size: 15px;
+      line-height: 1.66;
+      letter-spacing: -0.006em;
+      font-weight: 500;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      font-weight: 900;
+    }
+    .price small { color: rgba(255,255,255,.72); font-size: 12px; font-weight: 700; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .feature-img {
+      height: 528px;
+      overflow: hidden;
+      border-radius: 32px;
+      background: var(--soft);
+    }
+    .feature-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .feature-list { display: grid; gap: 14px; margin-top: 28px; }
+    .feature-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 17px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: #fff;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .feature-item:hover { transform: translateX(4px); box-shadow: 0 16px 36px rgba(22,18,12,.07); }
+    .num {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-weight: 900;
+    }
+    .feature-item h3 {
+      margin-bottom: 7px;
+      font-size: 21px;
+      line-height: 1.24;
+      letter-spacing: -0.025em;
+      font-weight: 900;
+    }
+    .feature-item p { margin-bottom: 0; color: var(--muted); font-size: 15px; line-height: 1.62; font-weight: 500; }
+
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .destination {
+      position: relative;
+      height: 266px;
+      overflow: hidden;
+      border-radius: 26px;
+      color: #fff;
+      isolation: isolate;
+    }
+    .destination img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease);
+    }
+    .destination:hover img { transform: scale(1.07); }
+    .destination::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.04));
+    }
+    .destination h3 {
+      position: absolute;
+      z-index: 1;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      font-weight: 900;
+    }
+
+    .cta {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) auto;
+      align-items: center;
+      gap: clamp(30px, 4vw, 64px);
+      overflow: hidden;
+      padding: clamp(42px, 5.6vw, 72px);
+      border-radius: 36px;
+      background: #142d24;
+      color: #fff;
+    }
+    .cta h2 {
+      margin-bottom: 24px;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.09;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+    .cta p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.76);
+      font-size: 18px;
+      line-height: 1.78;
+      letter-spacing: -0.006em;
+      font-weight: 500;
+    }
+
+    .footer {
+      padding: 44px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; }
+    .footer strong { color: var(--ink); }
+
+    .mobile-sticky { display: none; }
+
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    .reveal.show { opacity: 1; transform: none; }
+
+    .cards.reveal.show .tour-card,
+    .trust-grid.reveal.show .trust,
+    .destinations.reveal.show .destination { animation: rise .7s var(--ease) both; }
+    .cards.reveal.show .tour-card:nth-child(2),
+    .trust-grid.reveal.show .trust:nth-child(2),
+    .destinations.reveal.show .destination:nth-child(2) { animation-delay: .07s; }
+    .cards.reveal.show .tour-card:nth-child(3),
+    .trust-grid.reveal.show .trust:nth-child(3),
+    .destinations.reveal.show .destination:nth-child(3) { animation-delay: .14s; }
+    .trust-grid.reveal.show .trust:nth-child(4),
+    .destinations.reveal.show .destination:nth-child(4) { animation-delay: .21s; }
+
+    @keyframes slowZoom { to { transform: scale(1.12); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 1080px) {
+      .links { display: none; }
+      .hero-card { grid-template-columns: 1fr; min-height: auto; gap: 24px; }
+      .hero-content { max-width: 760px; padding-bottom: 0; }
+      .quote { max-width: 610px; }
+      .split-title, .feature, .cta { grid-template-columns: 1fr; }
+      .cards, .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .destinations { grid-template-columns: repeat(2, 1fr); }
+      .feature-img { height: 400px; }
+      .cta .btn { width: max-content; }
+    }
+
+    @media (max-width: 700px) {
+      .site { width: 100%; margin: 0; border-radius: 0; box-shadow: none; }
+      .wrap { width: min(100% - 24px, var(--container)); }
+      .nav { min-height: 70px; }
+      .logo { gap: 10px; font-size: 16px; }
+      .mark { width: 40px; height: 40px; font-size: 18px; }
+      .actions .light { display: none; }
+      .actions .dark { min-height: 46px; padding: 13px 18px; font-size: 13px; }
+
+      .hero { padding: 12px 0 48px; }
+      .hero-card {
+        min-height: calc(100svh - 94px);
+        align-content: end;
+        padding: 22px;
+        border-radius: 28px;
+        gap: 18px;
+      }
+      .hero-card::before {
+        background:
+          linear-gradient(to bottom, rgba(0,0,0,.14) 0%, rgba(0,0,0,.52) 48%, rgba(0,0,0,.76) 100%),
+          url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=86') center/cover;
+      }
+      .hero-card::after { height: 54%; }
+      .hero-content { padding: 0; }
+      .eyebrow { margin-bottom: 18px; padding: 8px 12px; font-size: 12px; line-height: 1.32; }
+      .hero h1 {
+        margin-bottom: 18px;
+        font-size: clamp(45px, 14vw, 64px);
+        line-height: 1.04;
+        letter-spacing: -0.045em;
+      }
+      .hero p { font-size: 16.5px; line-height: 1.7; letter-spacing: -0.006em; }
+      .hero-actions { margin-top: 24px; gap: 10px; }
+      .hero-actions .btn { flex: 1 1 145px; min-height: 50px; padding-inline: 16px; }
+
+      .quote { margin-top: 2px; padding: 20px; border-radius: 25px; }
+      .quote h3 { margin-bottom: 16px; font-size: 25px; line-height: 1.1; }
+      .field { min-height: 52px; margin-top: 10px; padding-inline: 16px; font-size: 14px; }
+      .quote .btn { min-height: 54px; margin-top: 14px; }
+
+      section { padding: 54px 0; }
+      .split-title { gap: 18px; margin-bottom: 27px; }
+      .label { margin-bottom: 11px; font-size: 11px; }
+      .h2 { font-size: clamp(34px, 11vw, 49px); line-height: 1.12; letter-spacing: -0.035em; }
+      .lead { font-size: 16px; line-height: 1.68; }
+
+      .trust-grid { grid-template-columns: 1fr; gap: 12px; }
+      .trust { min-height: auto; padding: 22px; border-radius: 24px; }
+      .trust strong { margin-bottom: 10px; font-size: 34px; }
+
+      .cards {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        margin-inline: -12px;
+        padding: 0 12px 10px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .cards::-webkit-scrollbar { display: none; }
+      .tour-card { min-width: 82%; min-height: 402px; border-radius: 26px; scroll-snap-align: start; }
+      .tour-body { padding: 22px; }
+      .tour-body h3 { font-size: 24px; }
+      .tour-body p { font-size: 14.5px; line-height: 1.55; }
+
+      .feature-img { height: 330px; border-radius: 28px; }
+      .feature-list { margin-top: 24px; }
+      .feature-item { grid-template-columns: 42px 1fr; gap: 15px; padding: 20px; border-radius: 24px; }
+      .num { width: 42px; height: 42px; }
+      .feature-item h3 { font-size: 20px; }
+
+      .destinations { grid-template-columns: 1fr; gap: 12px; }
+      .destination { height: 232px; border-radius: 24px; }
+
+      .cta { padding: 38px 24px; border-radius: 28px; gap: 28px; }
+      .cta h2 { margin-bottom: 20px; font-size: clamp(34px, 11vw, 50px); line-height: 1.12; letter-spacing: -0.035em; }
+      .cta p { font-size: 16px; line-height: 1.78; letter-spacing: -0.006em; }
+      .cta .btn { width: 100%; }
+
+      .footer { padding-bottom: 88px; }
+      .mobile-sticky {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        z-index: 40;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: #101010;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 900;
+        box-shadow: 0 16px 44px rgba(0,0,0,.28);
+      }
+    }
+
+    @media (max-width: 390px) {
+      .wrap { width: min(100% - 20px, var(--container)); }
+      .hero-card { padding: 18px; }
+      .hero h1 { font-size: 44px; }
+      .tour-card { min-width: 88%; }
+      .actions .dark { padding-inline: 14px; }
+      .logo span:last-child { max-width: 156px; overflow: hidden; text-overflow: ellipsis; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="wrap nav">
+        <a class="logo" href="#" aria-label="Lu Hanh Viet Nam home"><span class="mark">V</span><span>Lu Hanh Viet Nam</span></a>
+        <nav class="links" aria-label="Main navigation">
+          <a href="#tours">Tours</a>
+          <a href="#why">Why Us</a>
+          <a href="#places">Destinations</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="actions">
+          <a class="btn light" href="#tours">Explore</a>
+          <a class="btn dark" href="#contact">Tailor My Trip</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <div class="hero-card">
+            <div class="hero-content reveal show">
+              <span class="eyebrow">Private Vietnam journeys, crafted by locals</span>
+              <h1 id="hero-title">Vietnam beyond the guidebooks</h1>
+              <p>Meaningful tailor-made tours across Vietnam for travelers who want culture, comfort, nature and real local connection.</p>
+              <div class="hero-actions">
+                <a class="btn accent" href="#tours">View Tours</a>
+                <a class="btn light" href="#contact">Plan With Expert</a>
+              </div>
+            </div>
+
+            <form class="quote reveal show" id="quickForm">
+              <h3>Start planning your trip</h3>
+              <div class="field">Destination: Vietnam</div>
+              <div class="field">Travel style: Culture, Nature, Food</div>
+              <div class="field">Duration: 4 - 15+ days</div>
+              <button class="btn accent" type="submit">Get Free Quote</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="trust-title">
+        <div class="wrap">
+          <div class="split-title reveal">
+            <div>
+              <div class="label">Trusted local operator</div>
+              <h2 class="h2" id="trust-title">Personal journeys with honest support.</h2>
+            </div>
+            <p class="lead">From Hanoi streets to Ha Long Bay, Hoi An lanterns and the Mekong Delta, our local team helps international travelers discover Vietnam with confidence.</p>
+          </div>
+
+          <div class="trust-grid reveal">
+            <div class="trust"><strong>10+</strong><span>years designing private Vietnam trips</span></div>
+            <div class="trust"><strong>24/7</strong><span>local support while guests are traveling</span></div>
+            <div class="trust"><strong>4.9/5</strong><span>review-style trust score placeholder</span></div>
+            <div class="trust"><strong>100%</strong><span>customizable itinerary and pace</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tours" aria-labelledby="tours-title">
+        <div class="wrap">
+          <div class="split-title reveal">
+            <div>
+              <div class="label">Top Vietnam tours</div>
+              <h2 class="h2" id="tours-title">Handpicked routes to start from.</h2>
+            </div>
+            <p class="lead">Use these as ready-made tour ideas, or customize the route, hotel level, pace and experiences for each traveler.</p>
+          </div>
+
+          <div class="cards reveal">
+            <article class="tour-card">
+              <img src="https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=900&q=85" alt="Ha Long Bay landscape">
+              <div class="tour-body">
+                <span class="pill">7 Days · Classic Vietnam</span>
+                <h3>Hanoi, Ha Long Bay & Hoi An</h3>
+                <p>A balanced route for first-time visitors who want culture, food and iconic scenery.</p>
+                <div class="price"><span>From $495</span><small>per person</small></div>
+              </div>
+            </article>
+
+            <article class="tour-card">
+              <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=900&q=85" alt="Hoi An ancient town">
+              <div class="tour-body">
+                <span class="pill">9 Days · Culture & Beach</span>
+                <h3>Vietnam Heritage Escape</h3>
+                <p>Explore Hanoi, Hue, Hoi An and a relaxing coastal stay with private guides.</p>
+                <div class="price"><span>From $670</span><small>per person</small></div>
+              </div>
+            </article>
+
+            <article class="tour-card">
+              <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=85" alt="Mekong Delta river life">
+              <div class="tour-body">
+                <span class="pill">12 Days · Local Life</span>
+                <h3>From Mountains to Mekong</h3>
+                <p>Meet local communities, cruise quiet rivers and experience Vietnam at a slower pace.</p>
+                <div class="price"><span>Custom quote</span><small>private trip</small></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" aria-labelledby="why-title">
+        <div class="wrap feature">
+          <div class="feature-img reveal">
+            <img src="https://images.unsplash.com/photo-1531737212413-667205e1cda7?auto=format&fit=crop&w=1000&q=85" alt="Vietnam private tour experience">
+          </div>
+          <div class="reveal">
+            <div class="label">Why travel with us</div>
+            <h2 class="h2" id="why-title">Built for Western travelers, guided by Vietnamese locals.</h2>
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="num">1</div>
+                <div><h3>Tailor-made itinerary</h3><p>Every route can be adjusted by pace, hotel class, food preference, mobility level and travel style.</p></div>
+              </div>
+              <div class="feature-item">
+                <div class="num">2</div>
+                <div><h3>Authentic local experiences</h3><p>Cooking class, village walks, market visits, river cruises and hidden neighborhood routes.</p></div>
+              </div>
+              <div class="feature-item">
+                <div class="num">3</div>
+                <div><h3>No hidden cost</h3><p>Clear pricing, clear inclusions and a real local contact before, during and after the trip.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="places" aria-labelledby="places-title">
+        <div class="wrap">
+          <div class="split-title reveal">
+            <div>
+              <div class="label">Destinations</div>
+              <h2 class="h2" id="places-title">Vietnam places travelers love.</h2>
+            </div>
+            <p class="lead">A clean destination grid for SEO landing pages and easy tour discovery.</p>
+          </div>
+
+          <div class="destinations reveal">
+            <div class="destination"><img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=700&q=82" alt="Ho Chi Minh City"><h3>Ho Chi Minh City</h3></div>
+            <div class="destination"><img src="https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=700&q=82" alt="Ha Long Bay"><h3>Ha Long Bay</h3></div>
+            <div class="destination"><img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=82" alt="Hoi An"><h3>Hoi An</h3></div>
+            <div class="destination"><img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=700&q=82" alt="Ninh Binh"><h3>Ninh Binh</h3></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <div class="cta reveal">
+            <div>
+              <h2 id="contact-title">Tell us your travel idea. We’ll shape the route.</h2>
+              <p>Perfect for couples, families, senior travelers and small private groups looking for a reliable Vietnam travel partner.</p>
+            </div>
+            <a class="btn accent" href="mailto:hello@luhanhvietnam.com">Request Proposal</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <strong>Lu Hanh Viet Nam</strong>
+        <span>Demo homepage for a Vietnam travel service website.</span>
+      </div>
+    </footer>
+  </div>
+
+  <a class="mobile-sticky" href="#contact">Tailor My Trip</a>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.14 });
+
+    reveals.forEach((el) => observer.observe(el));
+
+    document.getElementById('quickForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Demo only: connect this form to email, CRM or booking system later.');
+    });
+  </script>
+</body>
+</html>
