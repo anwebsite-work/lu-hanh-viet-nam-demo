@@ -341,20 +341,72 @@
     }
     .trust span { color: var(--muted); font-size: 14px; line-height: 1.55; font-weight: 550; }
 
+    .tour-scroll-shell {
+      position: relative;
+    }
+
     .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
       gap: 18px;
+      width: max-content;
+      will-change: transform;
     }
 
     .tour-card {
       position: relative;
+      flex: 0 0 clamp(320px, 31vw, 392px);
       min-height: 442px;
       overflow: hidden;
+      border: 0;
       border-radius: 30px;
       background: #ddd;
       color: #fff;
       isolation: isolate;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+    }
+
+    .tour-progress {
+      width: min(360px, 100%);
+      height: 5px;
+      margin-top: 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(21, 61, 47, .12);
+    }
+
+    .tour-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+      transform: scaleX(.12);
+      transform-origin: left;
+      transition: transform .12s linear;
+    }
+
+    @media (min-width: 901px) {
+      #tours.tours-horizontal {
+        padding-top: 78px;
+        padding-bottom: 0;
+      }
+
+      #tours .tour-sticky {
+        position: sticky;
+        top: 78px;
+        min-height: calc(100vh - 78px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+
+      #tours .tour-scroll-shell {
+        width: 100%;
+      }
     }
 
     .tour-card img {
@@ -366,7 +418,17 @@
       object-fit: cover;
       transition: transform .7s var(--ease);
     }
-    .tour-card:hover img { transform: scale(1.06); }
+    .tour-card:hover,
+    .tour-card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 56px rgba(20, 15, 10, .22);
+    }
+    .tour-card:hover img,
+    .tour-card:focus-visible img { transform: scale(1.06); }
+    .tour-card:focus-visible {
+      outline: 3px solid rgba(255,255,255,.56);
+      outline-offset: -8px;
+    }
     .tour-card::after {
       content: "";
       position: absolute;
@@ -420,6 +482,496 @@
       font-weight: 900;
     }
     .price small { color: rgba(255,255,255,.72); font-size: 12px; font-weight: 700; }
+
+    .tour-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .tour-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .tour-link::after {
+      content: "↗";
+      font-size: 13px;
+      transition: transform .24s var(--ease);
+    }
+
+    .tour-link::after { content: "->"; }
+
+    .tour-card:hover .tour-link::after,
+    .tour-card:focus-visible .tour-link::after {
+      transform: translate(2px, -2px);
+    }
+
+    .tour-hint {
+      color: rgba(255,255,255,.76);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+
+
+    .tax-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .tax-card {
+      min-height: 235px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #fff;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+    }
+
+    .tax-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232,100,57,.32);
+      box-shadow: 0 18px 44px rgba(22,18,12,.08);
+    }
+
+    .tax-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 26px;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 950;
+      letter-spacing: -.02em;
+    }
+
+    .tax-card h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      font-weight: 900;
+    }
+
+    .tax-card p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.62;
+      font-weight: 500;
+    }
+
+    .tax-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tax-tags span,
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+      color: #4c463d;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .proof-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--soft);
+    }
+
+    .proof-item {
+      min-height: 116px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.72);
+    }
+
+    .proof-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+
+    .proof-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 550;
+    }
+
+    .review-wrap {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      align-items: start;
+      gap: 24px;
+    }
+
+    .review-score {
+      position: sticky;
+      top: 104px;
+      padding: 30px;
+      border-radius: 30px;
+      background: var(--green);
+      color: #fff;
+    }
+
+    .review-score .score {
+      display: block;
+      margin-bottom: 12px;
+      font-size: clamp(56px, 6vw, 86px);
+      line-height: .95;
+      letter-spacing: -0.06em;
+      font-weight: 950;
+    }
+
+    .review-score p {
+      max-width: 360px;
+      margin-bottom: 22px;
+      color: rgba(255,255,255,.76);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 550;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .review-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #fff;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(22,18,12,.08);
+    }
+
+    .review-card blockquote {
+      margin: 0 0 22px;
+      color: #22201d;
+      font-size: 19px;
+      line-height: 1.65;
+      letter-spacing: -0.012em;
+      font-weight: 650;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .review-author strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .review-author span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .stars {
+      color: var(--accent);
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: .08em;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .modal[hidden] { display: none; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(232,100,57,.18), transparent 34%),
+        rgba(16, 16, 15, .62);
+      backdrop-filter: blur(16px);
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(1080px, 100%);
+      max-height: min(88vh, 960px);
+      overflow: auto;
+      border: 1px solid rgba(232,224,213,.94);
+      border-radius: 34px;
+      background: rgba(255,253,248,.98);
+      box-shadow: 0 36px 90px rgba(16, 16, 15, .22);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 2;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      color: var(--ink);
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      cursor: pointer;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      transform: scale(1.04);
+      background: #fff;
+      outline: none;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      min-height: 100%;
+    }
+
+    .modal-visual {
+      position: relative;
+      min-height: 100%;
+      padding: 30px;
+      display: flex;
+      align-items: end;
+      background: #141414;
+    }
+
+    .modal-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.14)),
+        var(--trip-image, url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=86')) center/cover;
+      transform: scale(1.03);
+    }
+
+    .modal-badge-wrap,
+    .modal-visual-copy { position: relative; z-index: 1; }
+
+    .modal-badge-wrap {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-visual-copy {
+      max-width: 560px;
+      color: #fff;
+    }
+
+    .modal-kicker {
+      margin-bottom: 12px;
+      color: rgba(255,255,255,.8);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .modal-visual-copy h3 {
+      margin-bottom: 14px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+    }
+
+    .modal-visual-copy p {
+      max-width: 500px;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.84);
+      font-size: 16px;
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    .modal-content {
+      padding: 34px 30px 30px;
+      display: grid;
+      gap: 20px;
+      align-content: start;
+    }
+
+    .modal-price {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-price strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .modal-price span,
+    .modal-note,
+    .modal-copy p,
+    .modal-list li { color: var(--muted); }
+
+    .modal-note {
+      max-width: 180px;
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .modal-section h4 {
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.1;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .modal-copy p,
+    .modal-list li {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.72;
+      font-weight: 500;
+    }
+
+    .modal-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .modal-days {
+      display: grid;
+      gap: 12px;
+    }
+
+    .day-card {
+      padding: 16px 17px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+    }
+
+    .day-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .day-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.62;
+      font-weight: 500;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+    }
+
+    .modal-actions .btn {
+      flex: 1 1 0;
+      min-height: 52px;
+    }
+
+    body.modal-open { overflow: hidden; }
 
     .feature {
       display: grid;
@@ -552,14 +1104,25 @@
 
     .cards.reveal.show .tour-card,
     .trust-grid.reveal.show .trust,
+    .tax-grid.reveal.show .tax-card,
+    .proof-band.reveal.show .proof-item,
+    .review-list.reveal.show .review-card,
     .destinations.reveal.show .destination { animation: rise .7s var(--ease) both; }
     .cards.reveal.show .tour-card:nth-child(2),
     .trust-grid.reveal.show .trust:nth-child(2),
+    .tax-grid.reveal.show .tax-card:nth-child(2),
+    .proof-band.reveal.show .proof-item:nth-child(2),
+    .review-list.reveal.show .review-card:nth-child(2),
     .destinations.reveal.show .destination:nth-child(2) { animation-delay: .07s; }
     .cards.reveal.show .tour-card:nth-child(3),
     .trust-grid.reveal.show .trust:nth-child(3),
+    .tax-grid.reveal.show .tax-card:nth-child(3),
+    .proof-band.reveal.show .proof-item:nth-child(3),
+    .review-list.reveal.show .review-card:nth-child(3),
     .destinations.reveal.show .destination:nth-child(3) { animation-delay: .14s; }
     .trust-grid.reveal.show .trust:nth-child(4),
+    .tax-grid.reveal.show .tax-card:nth-child(4),
+    .proof-band.reveal.show .proof-item:nth-child(4),
     .destinations.reveal.show .destination:nth-child(4) { animation-delay: .21s; }
 
     @keyframes slowZoom { to { transform: scale(1.12); } }
@@ -571,10 +1134,14 @@
       .hero-content { max-width: 760px; padding-bottom: 0; }
       .quote { max-width: 610px; }
       .split-title, .feature, .cta { grid-template-columns: 1fr; }
-      .cards, .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid, .tax-grid, .proof-band { grid-template-columns: repeat(2, 1fr); }
+      .review-wrap { grid-template-columns: 1fr; }
+      .review-score { position: relative; top: auto; }
       .destinations { grid-template-columns: repeat(2, 1fr); }
       .feature-img { height: 400px; }
       .cta .btn { width: max-content; }
+      .modal-grid { grid-template-columns: 1fr; }
+      .modal-visual { min-height: 400px; }
     }
 
     @media (max-width: 700px) {
@@ -623,24 +1190,37 @@
       .h2 { font-size: clamp(34px, 11vw, 49px); line-height: 1.12; letter-spacing: -0.035em; }
       .lead { font-size: 16px; line-height: 1.68; }
 
+      .trust-grid, .tax-grid, .proof-band { grid-template-columns: 1fr; gap: 12px; }
+      .tax-card { min-height: auto; padding: 22px; border-radius: 24px; }
+      .tax-icon { margin-bottom: 22px; }
+      .proof-band { padding: 12px; border-radius: 26px; }
+      .proof-item { min-height: auto; padding: 18px; border-radius: 20px; }
+      .review-wrap { gap: 14px; }
+      .review-score { padding: 24px; border-radius: 26px; }
+      .review-card { padding: 22px; border-radius: 24px; }
+      .review-card blockquote { font-size: 17px; line-height: 1.62; }
       .trust-grid { grid-template-columns: 1fr; gap: 12px; }
       .trust { min-height: auto; padding: 22px; border-radius: 24px; }
       .trust strong { margin-bottom: 10px; font-size: 34px; }
 
+      .tour-scroll-shell { overflow: hidden; }
       .cards {
-        display: flex;
-        gap: 14px;
+        width: auto;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         margin-inline: -12px;
         padding: 0 12px 10px;
         -webkit-overflow-scrolling: touch;
+        transform: none !important;
       }
       .cards::-webkit-scrollbar { display: none; }
-      .tour-card { min-width: 82%; min-height: 402px; border-radius: 26px; scroll-snap-align: start; }
+      .tour-card { flex-basis: 82%; min-width: 82%; min-height: 402px; border-radius: 26px; scroll-snap-align: start; }
+      .tour-progress { margin-top: 18px; }
       .tour-body { padding: 22px; }
       .tour-body h3 { font-size: 24px; }
       .tour-body p { font-size: 14.5px; line-height: 1.55; }
+      .tour-meta { align-items: end; }
+      .tour-hint { max-width: 104px; text-align: right; }
 
       .feature-img { height: 330px; border-radius: 28px; }
       .feature-list { margin-top: 24px; }
@@ -655,6 +1235,17 @@
       .cta h2 { margin-bottom: 20px; font-size: clamp(34px, 11vw, 50px); line-height: 1.12; letter-spacing: -0.035em; }
       .cta p { font-size: 16px; line-height: 1.78; letter-spacing: -0.006em; }
       .cta .btn { width: 100%; }
+
+      .modal { padding: 12px; }
+      .modal-panel { max-height: calc(100svh - 24px); border-radius: 28px; }
+      .modal-close { top: 14px; right: 14px; width: 42px; height: 42px; }
+      .modal-visual { min-height: 320px; padding: 22px; }
+      .modal-badge-wrap { top: 20px; left: 20px; right: 68px; }
+      .modal-visual-copy h3 { font-size: clamp(30px, 10vw, 44px); }
+      .modal-content { padding: 22px 20px 24px; gap: 18px; }
+      .modal-price { align-items: start; flex-direction: column; }
+      .modal-note { max-width: none; text-align: left; }
+      .modal-actions { flex-direction: column; }
 
       .footer { padding-bottom: 88px; }
       .mobile-sticky {
@@ -680,7 +1271,7 @@
       .wrap { width: min(100% - 20px, var(--container)); }
       .hero-card { padding: 18px; }
       .hero h1 { font-size: 44px; }
-      .tour-card { min-width: 88%; }
+      .tour-card { flex-basis: 88%; min-width: 88%; }
       .actions .dark { padding-inline: 14px; }
       .logo span:last-child { max-width: 156px; overflow: hidden; text-overflow: ellipsis; }
     }
@@ -688,6 +1279,18 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       .reveal { opacity: 1; transform: none; }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
   </style>
 </head>
@@ -700,6 +1303,8 @@
           <a href="#tours">Tours</a>
           <a href="#why">Why Us</a>
           <a href="#places">Destinations</a>
+          <a href="#styles">Travel Styles</a>
+          <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
         </nav>
         <div class="actions">
@@ -753,7 +1358,7 @@
         </div>
       </section>
 
-      <section id="tours" aria-labelledby="tours-title">
+      <section id="tours" class="tours-horizontal" aria-labelledby="tours-title">
         <div class="wrap">
           <div class="split-title reveal">
             <div>
@@ -763,36 +1368,109 @@
             <p class="lead">Use these as ready-made tour ideas, or customize the route, hotel level, pace and experiences for each traveler.</p>
           </div>
 
-          <div class="cards reveal">
-            <article class="tour-card">
+          <div class="tour-sticky">
+            <div class="tour-scroll-shell">
+              <div class="cards reveal" id="tourTrack">
+            <article class="tour-card" data-tour="classic-vietnam" tabindex="0" role="button" aria-label="Open trip details for Hanoi, Ha Long Bay and Hoi An">
               <img src="https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=900&q=85" alt="Ha Long Bay landscape">
               <div class="tour-body">
                 <span class="pill">7 Days · Classic Vietnam</span>
                 <h3>Hanoi, Ha Long Bay & Hoi An</h3>
                 <p>A balanced route for first-time visitors who want culture, food and iconic scenery.</p>
                 <div class="price"><span>From $495</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
               </div>
             </article>
 
-            <article class="tour-card">
+            <article class="tour-card" data-tour="heritage-escape" tabindex="0" role="button" aria-label="Open trip details for Vietnam Heritage Escape">
               <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=900&q=85" alt="Hoi An ancient town">
               <div class="tour-body">
                 <span class="pill">9 Days · Culture & Beach</span>
                 <h3>Vietnam Heritage Escape</h3>
                 <p>Explore Hanoi, Hue, Hoi An and a relaxing coastal stay with private guides.</p>
                 <div class="price"><span>From $670</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
               </div>
             </article>
 
-            <article class="tour-card">
+            <article class="tour-card" data-tour="mountains-mekong" tabindex="0" role="button" aria-label="Open trip details for From Mountains to Mekong">
               <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=85" alt="Mekong Delta river life">
               <div class="tour-body">
                 <span class="pill">12 Days · Local Life</span>
                 <h3>From Mountains to Mekong</h3>
                 <p>Meet local communities, cruise quiet rivers and experience Vietnam at a slower pace.</p>
                 <div class="price"><span>Custom quote</span><small>private trip</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
               </div>
             </article>
+
+            <article class="tour-card" data-tour="northern-wonders" tabindex="0" role="button" aria-label="Open trip details for Northern Vietnam Wonders">
+              <img src="https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=900&q=85" alt="Northern Vietnam mountain landscape">
+              <div class="tour-body">
+                <span class="pill">8 Days · Nature & Culture</span>
+                <h3>Northern Vietnam Wonders</h3>
+                <p>Rice terraces, limestone valleys and warm local stays designed at a gentle pace.</p>
+                <div class="price"><span>From $590</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="tour-card" data-tour="saigon-mekong" tabindex="0" role="button" aria-label="Open trip details for Saigon and Mekong Slow Journey">
+              <img src="https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?auto=format&fit=crop&w=900&q=85" alt="Vietnam river boat experience">
+              <div class="tour-body">
+                <span class="pill">6 Days · Food & River Life</span>
+                <h3>Saigon & Mekong Slow Journey</h3>
+                <p>Urban energy, street food, quiet canals and family-run local experiences.</p>
+                <div class="price"><span>From $430</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="tour-card" data-tour="phu-quoc-retreat" tabindex="0" role="button" aria-label="Open trip details for Phu Quoc Island Retreat">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85" alt="Tropical beach and sea">
+              <div class="tour-body">
+                <span class="pill">5 Days · Beach Escape</span>
+                <h3>Phu Quoc Island Retreat</h3>
+                <p>A soft beach finish with island time, private transfers and curated resort options.</p>
+                <div class="price"><span>From $420</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="tour-card" data-tour="family-vietnam" tabindex="0" role="button" aria-label="Open trip details for Vietnam Family Discovery">
+              <img src="https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=900&q=85" alt="Family travel in Vietnam style destination">
+              <div class="tour-body">
+                <span class="pill">10 Days · Family Friendly</span>
+                <h3>Vietnam Family Discovery</h3>
+                <p>Easy logistics, kid-friendly pacing, hands-on culture and comfortable hotels.</p>
+                <div class="price"><span>From $760</span><small>per person</small></div>
+                <div class="tour-meta">
+                  <span class="tour-link">View itinerary</span>
+                  <span class="tour-hint">Click to preview details</span>
+                </div>
+              </div>
+            </article>
+              </div>
+            </div>
+            <div class="tour-progress" aria-hidden="true"><span id="tourProgressBar"></span></div>
           </div>
         </div>
       </section>
@@ -842,6 +1520,99 @@
         </div>
       </section>
 
+
+      <section id="styles" aria-labelledby="styles-title">
+        <div class="wrap">
+          <div class="split-title reveal">
+            <div>
+              <div class="label">Travel taxonomy</div>
+              <h2 class="h2" id="styles-title">Easy ways for guests to find the right trip.</h2>
+            </div>
+            <p class="lead">These category blocks help Western travelers quickly choose by travel style, comfort level and trip purpose before asking for a proposal.</p>
+          </div>
+
+          <div class="tax-grid reveal">
+            <article class="tax-card">
+              <div>
+                <div class="tax-icon">01</div>
+                <h3>Private Culture Tours</h3>
+                <p>For first-time visitors who want temples, old towns, street food, history and soft-paced local discovery.</p>
+              </div>
+              <div class="tax-tags"><span>Hanoi</span><span>Hue</span><span>Hoi An</span></div>
+            </article>
+            <article class="tax-card">
+              <div>
+                <div class="tax-icon">02</div>
+                <h3>Nature & Soft Adventure</h3>
+                <p>Light trekking, scenic boat trips, countryside cycling and landscapes without pushing guests too hard.</p>
+              </div>
+              <div class="tax-tags"><span>Ninh Binh</span><span>Sapa</span><span>Ha Long</span></div>
+            </article>
+            <article class="tax-card">
+              <div>
+                <div class="tax-icon">03</div>
+                <h3>Family & Senior Friendly</h3>
+                <p>Comfortable hotels, private transfers, slower timing and clear support for families or older travelers.</p>
+              </div>
+              <div class="tax-tags"><span>Easy pace</span><span>Private guide</span><span>Flexible</span></div>
+            </article>
+            <article class="tax-card">
+              <div>
+                <div class="tax-icon">04</div>
+                <h3>Food & Local Life</h3>
+                <p>Market walks, cooking classes, home meals and neighborhood routes that feel authentic, not staged.</p>
+              </div>
+              <div class="tax-tags"><span>Street food</span><span>Mekong</span><span>Local host</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="proof-title">
+        <div class="wrap">
+          <div class="split-title reveal">
+            <div>
+              <div class="label">Trust elements</div>
+              <h2 class="h2" id="proof-title">Clear signals before guests enquire.</h2>
+            </div>
+            <p class="lead">Trust blocks like these reduce hesitation for international travelers who are comparing multiple Vietnam travel companies.</p>
+          </div>
+
+          <div class="proof-band reveal">
+            <div class="proof-item"><strong>Local English-speaking team</strong><span>Clear communication before and during the trip.</span></div>
+            <div class="proof-item"><strong>Transparent quotation</strong><span>Inclusions, exclusions and optional upgrades shown clearly.</span></div>
+            <div class="proof-item"><strong>Private licensed guides</strong><span>Guide and driver details can be confirmed before arrival.</span></div>
+            <div class="proof-item"><strong>Secure booking support</strong><span>Deposit, cancellation and payment steps explained upfront.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" aria-labelledby="reviews-title">
+        <div class="wrap review-wrap">
+          <div class="review-score reveal">
+            <div class="label" style="color: rgba(255,255,255,.72);">Guest reviews</div>
+            <span class="score">4.9</span>
+            <p>Sample trust section for the demo homepage. Replace these with real reviews from Google, TripAdvisor or past customer feedback.</p>
+            <span class="mini-badge">Based on 180+ sample guest stories</span>
+          </div>
+
+          <div class="review-list reveal">
+            <article class="review-card">
+              <blockquote>“The itinerary felt personal from day one. We had enough structure to feel safe, but enough flexibility to enjoy Vietnam at our own rhythm.”</blockquote>
+              <div class="review-author"><div><strong>Emily Carter</strong><span>United Kingdom · Couple trip</span></div><div class="stars">★★★★★</div></div>
+            </article>
+            <article class="review-card">
+              <blockquote>“Our guide handled every detail, including food preferences and slower walking days for my parents. The trip felt comfortable and genuinely local.”</blockquote>
+              <div class="review-author"><div><strong>Michael Anderson</strong><span>Australia · Family journey</span></div><div class="stars">★★★★★</div></div>
+            </article>
+            <article class="review-card">
+              <blockquote>“We wanted more than a standard checklist tour. The local markets, countryside stops and small restaurants made the experience memorable.”</blockquote>
+              <div class="review-author"><div><strong>Sophie Martin</strong><span>France · Private culture tour</span></div><div class="stars">★★★★★</div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" aria-labelledby="contact-title">
         <div class="wrap">
           <div class="cta reveal">
@@ -865,6 +1636,55 @@
 
   <a class="mobile-sticky" href="#contact">Tailor My Trip</a>
 
+  <div class="modal" id="tripModal" hidden>
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" id="modalClose" aria-label="Close trip details">✕</button>
+      <div class="modal-grid">
+        <div class="modal-visual" id="modalVisual">
+          <div class="modal-badge-wrap">
+            <span class="modal-badge" id="modalDuration"></span>
+            <span class="modal-badge" id="modalStyle"></span>
+          </div>
+          <div class="modal-visual-copy">
+            <div class="modal-kicker">Sample private itinerary</div>
+            <h3 id="modalTitle"></h3>
+            <p id="modalSummary"></p>
+          </div>
+        </div>
+        <div class="modal-content">
+          <div class="modal-price">
+            <div>
+              <span>Starting from</span>
+              <strong id="modalPrice"></strong>
+            </div>
+            <div class="modal-note" id="modalNote"></div>
+          </div>
+
+          <section class="modal-section modal-copy">
+            <h4>Trip snapshot</h4>
+            <p id="modalOverview"></p>
+          </section>
+
+          <section class="modal-section">
+            <h4>Highlights</h4>
+            <ul class="modal-list" id="modalHighlights"></ul>
+          </section>
+
+          <section class="modal-section">
+            <h4>Suggested flow</h4>
+            <div class="modal-days" id="modalDays"></div>
+          </section>
+
+          <div class="modal-actions">
+            <a class="btn accent" href="#contact" id="modalCustomize">Customize this trip</a>
+            <button class="btn light" type="button" id="modalCloseSecondary">Keep exploring</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -878,6 +1698,259 @@
     document.getElementById('quickForm').addEventListener('submit', function(e) {
       e.preventDefault();
       alert('Demo only: connect this form to email, CRM or booking system later.');
+    });
+
+    const toursSection = document.getElementById('tours');
+    const tourTrack = document.getElementById('tourTrack');
+    const tourProgressBar = document.getElementById('tourProgressBar');
+
+    function setupHorizontalTours() {
+      if (!toursSection || !tourTrack) return;
+
+      const isDesktop = window.matchMedia('(min-width: 901px)').matches;
+      tourTrack.style.transform = 'translate3d(0,0,0)';
+      toursSection.style.paddingBottom = '';
+
+      if (!isDesktop) {
+        if (tourProgressBar) tourProgressBar.style.transform = 'scaleX(.12)';
+        return;
+      }
+
+      const maxMove = Math.max(0, tourTrack.scrollWidth - tourTrack.parentElement.clientWidth);
+      toursSection.style.paddingBottom = `${maxMove}px`;
+    }
+
+    function animateHorizontalTours() {
+      if (!toursSection || !tourTrack) return;
+      const isDesktop = window.matchMedia('(min-width: 901px)').matches;
+      if (!isDesktop) return;
+
+      const rect = toursSection.getBoundingClientRect();
+      const maxMove = Math.max(0, tourTrack.scrollWidth - tourTrack.parentElement.clientWidth);
+      const totalScrollable = Math.max(1, rect.height - window.innerHeight);
+      const scrollStart = totalScrollable - maxMove;
+      const progress = Math.min(1, Math.max(0, (-rect.top - scrollStart) / Math.max(1, maxMove)));
+
+      tourTrack.style.transform = `translate3d(${-maxMove * progress}px, 0, 0)`;
+      if (tourProgressBar) tourProgressBar.style.transform = `scaleX(${Math.max(.12, progress)})`;
+    }
+
+    setupHorizontalTours();
+    animateHorizontalTours();
+    window.addEventListener('resize', () => { setupHorizontalTours(); animateHorizontalTours(); });
+    window.addEventListener('scroll', animateHorizontalTours, { passive: true });
+
+
+    const tripData = {
+      'classic-vietnam': {
+        title: 'Hanoi, Ha Long Bay & Hoi An',
+        duration: '7 Days',
+        style: 'Classic Vietnam',
+        price: '$495',
+        note: 'Sample land price for 2 guests in low season. Flights can be added later.',
+        image: "url('https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A smooth first trip across Vietnam with old-quarter energy, a scenic overnight cruise and a charming heritage town.',
+        overview: 'Ideal for first-time travelers who want a light, polished route with private transfers, easy logistics and a good balance of sightseeing and downtime.',
+        highlights: [
+          'Street food walk in Hanoi with a local host',
+          'One-night Ha Long Bay cruise with cave visit and sunset deck time',
+          'Lantern-lit evening and relaxed bicycle moments in Hoi An'
+        ],
+        days: [
+          { title: 'Day 1-2 · Hanoi', copy: 'Airport meet-and-greet, old quarter stay, cyclo ride and a flexible half-day city discovery.' },
+          { title: 'Day 3-4 · Ha Long Bay', copy: 'Private transfer to the harbor, overnight cruise, seafood dinner and gentle morning tai chi on deck.' },
+          { title: 'Day 5-7 · Hoi An', copy: 'Short flight south, ancient town walk, beach break or cooking class before departure support.' }
+        ]
+      },
+      'heritage-escape': {
+        title: 'Vietnam Heritage Escape',
+        duration: '9 Days',
+        style: 'Culture & Beach',
+        price: '$670',
+        note: 'Best suited for couples or small families who want comfort with room to slow down.',
+        image: "url('https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A heritage-focused route linking imperial history, lantern streets and a soft beach finish with private guides.',
+        overview: 'This itinerary works well for travelers who enjoy storytelling, architecture and a more relaxed daily pace without losing signature Vietnam moments.',
+        highlights: [
+          'Guided walk through Hanoi highlights and hidden corners',
+          'Imperial citadel and royal tomb experience in Hue',
+          'Two easy evenings in Hoi An with optional An Bang beach time'
+        ],
+        days: [
+          { title: 'Day 1-3 · Hanoi', copy: 'Arrival support, foodie experiences and a curated city route that can be adjusted for seniors or families.' },
+          { title: 'Day 4-5 · Hue', copy: 'Flight to central Vietnam, royal history touring and a dragon boat mood at sunset on the Perfume River.' },
+          { title: 'Day 6-9 · Hoi An', copy: 'Transfer over the Hai Van Pass, tailoring, lantern quarter wandering and a final resort-style wind down.' }
+        ]
+      },
+      'mountains-mekong': {
+        title: 'From Mountains to Mekong',
+        duration: '12 Days',
+        style: 'Local Life',
+        price: 'Custom quote',
+        note: 'Built as a flexible framework for private groups who want deeper local contact and slower travel rhythm.',
+        image: "url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A more soulful route through northern landscapes and southern waterways with room for community visits and soft adventure.',
+        overview: 'Designed for travelers who care more about atmosphere than rushing between checklists, with handcrafted pacing and strong local hosting.',
+        highlights: [
+          'Village-based cultural encounters in the north',
+          'Handpicked transition days to avoid travel fatigue',
+          'Private sampan and market moments in the Mekong Delta'
+        ],
+        days: [
+          { title: 'Day 1-4 · North Vietnam', copy: 'Begin in Hanoi, then head into greener mountain scenery with guided walks and authentic local meals.' },
+          { title: 'Day 5-8 · Central transition', copy: 'Break the route with culture-led stops, boutique stays and optional hands-on craft experiences.' },
+          { title: 'Day 9-12 · Mekong Delta', copy: 'Finish in the south with quiet canals, floating life and an unhurried final night near Ho Chi Minh City.' }
+        ]
+      },
+      'northern-wonders': {
+        title: 'Northern Vietnam Wonders',
+        duration: '8 Days',
+        style: 'Nature & Culture',
+        price: '$590',
+        note: 'A strong fit for travelers who want mountains and local life without rushing.',
+        image: "url('https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A scenic northern route with rice terraces, limestone valleys, warm local hosting and smooth private transfers.',
+        overview: 'This route is designed for travelers who want postcard landscapes and meaningful cultural moments while keeping the daily rhythm comfortable.',
+        highlights: ['Ninh Binh boat ride through limestone scenery', 'Mountain-view stay and guided village walk', 'Flexible photography and slow travel stops'],
+        days: [
+          { title: 'Day 1-2 · Hanoi', copy: 'Arrival, food-led introduction and a relaxed old quarter walk with a local host.' },
+          { title: 'Day 3-5 · Ninh Binh', copy: 'Boat ride, temples, countryside cycling and soft adventure moments.' },
+          { title: 'Day 6-8 · Northern valleys', copy: 'Rice terraces, local meals and a scenic return with private driver support.' }
+        ]
+      },
+      'saigon-mekong': {
+        title: 'Saigon & Mekong Slow Journey',
+        duration: '6 Days',
+        style: 'Food & River Life',
+        price: '$430',
+        note: 'Great for short trips, stopovers or travelers focused on southern Vietnam.',
+        image: "url('https://images.unsplash.com/photo-1521993117367-b7f70ccd029d?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A southern Vietnam trip built around street food, local stories, floating life and slow river moments.',
+        overview: 'Perfect for guests who want a shorter, warmer and more personal Vietnam experience with fewer hotel changes.',
+        highlights: ['Saigon evening food route by local host', 'Cu Chi or city heritage option', 'Private Mekong canals, orchards and market stops'],
+        days: [
+          { title: 'Day 1-2 · Ho Chi Minh City', copy: 'Arrival, urban discovery, coffee culture and a flexible evening food experience.' },
+          { title: 'Day 3-4 · Mekong Delta', copy: 'River boat, local workshops, quiet canals and overnight stay options.' },
+          { title: 'Day 5-6 · Saigon', copy: 'Return with time for markets, museums or a relaxed departure plan.' }
+        ]
+      },
+      'phu-quoc-retreat': {
+        title: 'Phu Quoc Island Retreat',
+        duration: '5 Days',
+        style: 'Beach Escape',
+        price: '$420',
+        note: 'Works well as a final beach extension after a culture-focused Vietnam route.',
+        image: "url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A calm island break with resort comfort, beach time and light curated experiences instead of packed sightseeing.',
+        overview: 'Designed for couples and families who want a soft landing or a relaxing final chapter after exploring Vietnam.',
+        highlights: ['Handpicked beach resort options', 'Optional snorkeling or island-hopping day', 'Private airport transfers and flexible downtime'],
+        days: [
+          { title: 'Day 1 · Arrival', copy: 'Airport pickup, resort check-in and an easy beach evening.' },
+          { title: 'Day 2-4 · Island time', copy: 'Choose snorkeling, local markets, sunset drinks or simple rest days.' },
+          { title: 'Day 5 · Departure', copy: 'Slow morning and private transfer for the next flight.' }
+        ]
+      },
+      'family-vietnam': {
+        title: 'Vietnam Family Discovery',
+        duration: '10 Days',
+        style: 'Family Friendly',
+        price: '$760',
+        note: 'Built with easier travel times, safe pacing and flexible activities for families.',
+        image: "url('https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=1200&q=86')",
+        summary: 'A comfortable family route with hands-on culture, lighter travel days and experiences children can actually enjoy.',
+        overview: 'This trip keeps logistics simple and gives families a mix of culture, nature, food and downtime without overloading the schedule.',
+        highlights: ['Kid-friendly cooking class or craft session', 'Private transfers and flexible start times', 'Balanced city, nature and beach moments'],
+        days: [
+          { title: 'Day 1-3 · Hanoi', copy: 'Arrival support, family-friendly food stops and easy cultural sightseeing.' },
+          { title: 'Day 4-6 · Central Vietnam', copy: 'Hoi An activities, beach break and optional lantern-making experience.' },
+          { title: 'Day 7-10 · South or island extension', copy: 'Pick between Mekong river life, Saigon highlights or a relaxed beach finish.' }
+        ]
+      }
+    };
+
+    const tripModal = document.getElementById('tripModal');
+    const modalVisual = document.getElementById('modalVisual');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDuration = document.getElementById('modalDuration');
+    const modalStyle = document.getElementById('modalStyle');
+    const modalSummary = document.getElementById('modalSummary');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalNote = document.getElementById('modalNote');
+    const modalOverview = document.getElementById('modalOverview');
+    const modalHighlights = document.getElementById('modalHighlights');
+    const modalDays = document.getElementById('modalDays');
+    const modalCustomize = document.getElementById('modalCustomize');
+    const modalCloseButton = document.getElementById('modalClose');
+    const tourCards = document.querySelectorAll('.tour-card');
+    const modalCloseButtons = [modalCloseButton, document.getElementById('modalCloseSecondary')];
+    let lastFocusedCard = null;
+
+    modalCloseButton.textContent = 'X';
+
+    function normalizeDayTitle(title) {
+      return title.replace(/\s+[^\x00-\x7F]+\s+/g, ' / ');
+    }
+
+    function openTripModal(tourId, card) {
+      const trip = tripData[tourId];
+      if (!trip) return;
+
+      lastFocusedCard = card || document.activeElement;
+      modalVisual.style.setProperty('--trip-image', trip.image);
+      modalTitle.textContent = trip.title;
+      modalDuration.textContent = trip.duration;
+      modalStyle.textContent = trip.style;
+      modalSummary.textContent = trip.summary;
+      modalPrice.textContent = trip.price;
+      modalNote.textContent = trip.note;
+      modalOverview.textContent = trip.overview;
+      modalHighlights.innerHTML = trip.highlights.map((item) => `<li>${item}</li>`).join('');
+      modalDays.innerHTML = trip.days.map((day) => `
+        <article class="day-card">
+          <strong>${normalizeDayTitle(day.title)}</strong>
+          <p>${day.copy}</p>
+        </article>
+      `).join('');
+
+      tripModal.hidden = false;
+      document.body.classList.add('modal-open');
+      modalCloseButton.focus();
+    }
+
+    function closeTripModal() {
+      tripModal.hidden = true;
+      document.body.classList.remove('modal-open');
+      if (lastFocusedCard && typeof lastFocusedCard.focus === 'function') {
+        lastFocusedCard.focus();
+      }
+    }
+
+    tourCards.forEach((card) => {
+      card.addEventListener('click', () => openTripModal(card.dataset.tour, card));
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openTripModal(card.dataset.tour, card);
+        }
+      });
+    });
+
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener('click', closeTripModal);
+    });
+
+    modalCustomize.addEventListener('click', closeTripModal);
+
+    tripModal.addEventListener('click', (event) => {
+      if (event.target.dataset.closeModal === 'true') {
+        closeTripModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !tripModal.hidden) {
+        closeTripModal();
+      }
     });
   </script>
 </body>
